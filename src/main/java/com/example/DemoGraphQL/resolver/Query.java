@@ -8,14 +8,16 @@ import com.example.DemoGraphQL.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Query implements GraphQLQueryResolver {
-    private BookRepository bookRepository;
     private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
+
+    public Query(AuthorRepository authorRepository, BookRepository bookRepository) {
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
+    }
 
     @Autowired
-    public Query(BookRepository bookRepository, AuthorRepository authorRepository) {
-        this.bookRepository = bookRepository;
-        this.authorRepository = authorRepository;
-    }
+
 
     public Iterable<Book> findAllBooks() {
         return bookRepository.findAll();

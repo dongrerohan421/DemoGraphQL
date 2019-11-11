@@ -7,12 +7,12 @@ import com.example.DemoGraphQL.repository.AuthorRepository;
 import com.example.DemoGraphQL.repository.BookRepository;
 
 public class Mutation implements GraphQLMutationResolver {
-    private BookRepository bookRepository;
     private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
 
-    public Mutation(BookRepository bookRepository, AuthorRepository authorRepository) {
-        this.bookRepository = bookRepository;
+    public Mutation(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
     public Author newAuthor(String firstName, String lastName) {
